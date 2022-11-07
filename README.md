@@ -1,1 +1,1 @@
-Consulta de cep com API com preenchimento automático
+Consulta de cep usando API com preenchimento automático
