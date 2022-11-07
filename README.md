@@ -1,1 +1,1 @@
-# consulta-cep-v2.0
+Consulta de cep usando API com preenchimento automático
