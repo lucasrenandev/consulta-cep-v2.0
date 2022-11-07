@@ -11,8 +11,7 @@ const ibge = document.getElementById("ibge")
 const gia = document.getElementById("gia")
 const ddd = document.getElementById("ddd")
 const siafi = document.getElementById("siafi")
-const clear = document.getElementById("fa-clear")
-const error = document.querySelectorAll("error")
+const limpar = document.getElementById("fa-clear")
 
 // ADICIONANDO EVENTO PARA O CAMPO CEP
 cep.addEventListener("blur", () => {
@@ -20,8 +19,9 @@ cep.addEventListener("blur", () => {
 })
 
 // ADICIONANDO EVENTO PARA O BOTÃO LIMPAR
-clear.addEventListener('click', () => {
+limpar.addEventListener('click', () => {
     clearField()
+    limpar.style.display = "none"
 })
 
 // FUNÇÃO PARA OBTER CEP + DADOS
@@ -35,8 +35,18 @@ function getCep() {
     ButtonClear()
 }
 
-// FUNÇÃO PARA OBTER DADOS
+// FUNÇÃO PARA RETORNAR OS DADOS OBTIDOS
 function getData(data) {
+    if(data.erro) {
+        textError()
+    }
+    else {
+        dataField(data)
+    }
+}
+
+// FUNÇÃO PARA OBTER OS DADOS DOS CAMPOS
+function dataField(data) {
     logradouro.value = data.logradouro
     complemento.value = data.complemento
     bairro.value = data.bairro
@@ -46,10 +56,6 @@ function getData(data) {
     gia.value = data.gia
     ddd.value = data.ddd
     siafi.value = data.siafi
-
-    if(data.erro) {
-        returnText()
-    }
 }
 
 // FUNÇÃO PARA LIMPAR OS CAMPOS PREENCHIDOS
@@ -64,28 +70,27 @@ function clearField() {
     gia.value = ""
     ddd.value = ""
     siafi.value = ""
-    clear.style.display = "none"
-}
-
-// FUNÇÃO PARA O BOTÃO DE LIMPAR CAMPO
-function ButtonClear() {
-    if(cep.value === "") {
-        clear.style.display = "none"
-    }
-    else {
-        clear.style.display = "block"
-    }
 }
 
 // FUNÇÃO PARA RETORNAR TEXTO DE ERRO
-function returnText() {
-    logradouro.value = "Não encontrado"
-    complemento.value = "Não encontrado"
-    bairro.value = "Não encontrado"
-    localidade.value = "Não encontrado"
-    uf.value = "Não encontrado"
-    ibge.value = "Não encontrado"
-    gia.value = "Não encontrado"
-    ddd.value = "Não encontrado"
-    siafi.value = "Não encontrado"
+function textError() {
+    logradouro.value = "Cep não encontrado"
+    complemento.value = "Cep não encontrado"
+    bairro.value = "Cep não encontrado"
+    localidade.value = "Cep não encontrado"
+    uf.value = "Cep não encontrado"
+    ibge.value = "Cep não encontrado"
+    gia.value = "Cep não encontrado"
+    ddd.value = "Cep não encontrado"
+    siafi.value = "Cep não encontrado"
+}
+
+// FUNÇÃO PARA OCULTAR/MOSTRAR BOTÃO LIMPAR CAMPO
+function ButtonClear() {
+    if(!cep.value) {
+        limpar.style.display = "none"
+    }
+    else {
+        limpar.style.display = "block"
+    }
 }
