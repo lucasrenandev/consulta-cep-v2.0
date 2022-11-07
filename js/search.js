@@ -11,18 +11,16 @@ const ibge = document.getElementById("ibge")
 const gia = document.getElementById("gia")
 const ddd = document.getElementById("ddd")
 const siafi = document.getElementById("siafi")
-const limpar = document.getElementById("fa-clear")
+const buttonClear = document.getElementById("fa-clear")
 
 // ADICIONANDO EVENTO PARA O CAMPO CEP
 cep.addEventListener("blur", () => {
     getCep()
-    validationCep()
 })
 
 // ADICIONANDO EVENTO PARA O BOTÃO LIMPAR
-limpar.addEventListener('click', () => {
+buttonClear.addEventListener('click', () => {
     clearField()
-    limpar.style.display = "none"
 })
 
 // FUNÇÃO PARA VALIDAR O CAMPO CEP
@@ -40,7 +38,8 @@ function getCep() {
     .then((response) => {
         response.json().then(getData)
     })
-    buttonClear()
+    validationCep()
+    displayButton()
 }
 
 // FUNÇÃO PARA RETORNAR OS DADOS OBTIDOS
@@ -78,6 +77,7 @@ function clearField() {
     gia.value = ""
     ddd.value = ""
     siafi.value = ""
+    buttonClear.style.display = "none"
 }
 
 // FUNÇÃO PARA RETORNAR TEXTO DE ERRO CASO(UNDEFINED)
@@ -107,11 +107,11 @@ function invalidCep() {
 }
 
 // FUNÇÃO PARA OCULTAR/MOSTRAR BOTÃO LIMPAR CAMPO
-function buttonClear() {
+function displayButton() {
     if(!cep.value) {
-        limpar.style.display = "none"
+        buttonClear.style.display = "none"
     }
     else {
-        limpar.style.display = "block"
+        buttonClear.style.display = "block"
     }
 }
