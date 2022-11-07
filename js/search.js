@@ -16,6 +16,7 @@ const limpar = document.getElementById("fa-clear")
 // ADICIONANDO EVENTO PARA O CAMPO CEP
 cep.addEventListener("blur", () => {
     getCep()
+    validationCep()
 })
 
 // ADICIONANDO EVENTO PARA O BOTÃO LIMPAR
@@ -23,6 +24,13 @@ limpar.addEventListener('click', () => {
     clearField()
     limpar.style.display = "none"
 })
+
+// FUNÇÃO PARA VALIDAR O CAMPO CEP
+function validationCep() {
+    if(cep.value.length !== 8 || cep.value !== getCep) {
+        invalidCep()
+    }
+}
 
 // FUNÇÃO PARA OBTER CEP + DADOS
 function getCep() {
@@ -32,7 +40,7 @@ function getCep() {
     .then((response) => {
         response.json().then(getData)
     })
-    ButtonClear()
+    buttonClear()
 }
 
 // FUNÇÃO PARA RETORNAR OS DADOS OBTIDOS
@@ -72,21 +80,34 @@ function clearField() {
     siafi.value = ""
 }
 
-// FUNÇÃO PARA RETORNAR TEXTO DE ERRO
+// FUNÇÃO PARA RETORNAR TEXTO DE ERRO CASO(UNDEFINED)
 function textError() {
-    logradouro.value = "Cep não encontrado"
-    complemento.value = "Cep não encontrado"
-    bairro.value = "Cep não encontrado"
-    localidade.value = "Cep não encontrado"
-    uf.value = "Cep não encontrado"
-    ibge.value = "Cep não encontrado"
-    gia.value = "Cep não encontrado"
-    ddd.value = "Cep não encontrado"
-    siafi.value = "Cep não encontrado"
+    logradouro.value = "Cep não encontrado!"
+    complemento.value = "Cep não encontrado!"
+    bairro.value = "Cep não encontrado!"
+    localidade.value = "Cep não encontrado!"
+    uf.value = "Cep não encontrado!"
+    ibge.value = "Cep não encontrado!"
+    gia.value = "Cep não encontrado!"
+    ddd.value = "Cep não encontrado!"
+    siafi.value = "Cep não encontrado!"
+}
+
+// FUNÇÃO PARA RETORNAR TEXTO DE ERRO CASO(CEP INVÁLIDO)
+function invalidCep() {
+    logradouro.value = "Cep inválido!"
+    complemento.value = "Cep inválido!"
+    bairro.value = "Cep inválido!"
+    localidade.value = "Cep inválido!"
+    uf.value = "Cep inválido!"
+    ibge.value = "Cep inválido!"
+    gia.value = "Cep inválido!"
+    ddd.value = "Cep inválido!"
+    siafi.value = "Cep inválido!"
 }
 
 // FUNÇÃO PARA OCULTAR/MOSTRAR BOTÃO LIMPAR CAMPO
-function ButtonClear() {
+function buttonClear() {
     if(!cep.value) {
         limpar.style.display = "none"
     }
