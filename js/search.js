@@ -25,17 +25,20 @@ buttonClear.addEventListener('click', () => {
 
 // FUNÇÃO PARA VALIDAR O CAMPO CEP
 function validationCep() {
-    if(cep.value.length !== 8 || cep.value !== getCep) {
+    if(cep.value.length !== 8) {
         invalidCep()
+    }
+    if(cep.value === "") {
+        emptyField()
     }
 }
 
 // FUNÇÃO PARA OBTER CEP + DADOS
 function getCep() {
     const search = cep.value.replace("-", "")
+    const url = `https://viacep.com.br/ws/${search}/json/`
 
-    fetch(`https://viacep.com.br/ws/${search}/json/`)
-    .then((response) => {
+    fetch(url).then((response) => {
         response.json().then(getData)
     })
     validationCep()
@@ -45,15 +48,15 @@ function getCep() {
 // FUNÇÃO PARA RETORNAR OS DADOS OBTIDOS
 function getData(data) {
     if(data.erro) {
-        textError()
+        errorText()
     }
     else {
-        dataField(data)
+        getDataField(data)
     }
 }
 
 // FUNÇÃO PARA OBTER OS DADOS DOS CAMPOS
-function dataField(data) {
+function getDataField(data) {
     logradouro.value = data.logradouro
     complemento.value = data.complemento
     bairro.value = data.bairro
@@ -81,7 +84,7 @@ function clearField() {
 }
 
 // FUNÇÃO PARA RETORNAR TEXTO DE ERRO CASO(UNDEFINED)
-function textError() {
+function errorText() {
     logradouro.value = "Cep não encontrado!"
     complemento.value = "Cep não encontrado!"
     bairro.value = "Cep não encontrado!"
@@ -104,6 +107,19 @@ function invalidCep() {
     gia.value = "Cep inválido!"
     ddd.value = "Cep inválido!"
     siafi.value = "Cep inválido!"
+}
+
+// FUNÇÃO PARA RETORNAR TEXTO DE ERRO CASO(CAMPO VAZIO)
+function emptyField() {
+    logradouro.value = "Campo cep vazio!"
+    complemento.value = "Campo cep vazio!"
+    bairro.value = "Campo cep vazio!"
+    localidade.value = "Campo cep vazio!"
+    uf.value = "Campo cep vazio!"
+    ibge.value = "Campo cep vazio!"
+    gia.value = "Campo cep vazio!"
+    ddd.value = "Campo cep vazio!"
+    siafi.value = "Campo cep vazio!"
 }
 
 // FUNÇÃO PARA OCULTAR/MOSTRAR BOTÃO LIMPAR CAMPO
