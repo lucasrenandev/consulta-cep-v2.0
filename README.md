@@ -1,1 +1,1 @@
-Consulta de cep usando API com preenchimento de campos automático
+Consulta de cep usando API(ViaCEP)
