@@ -83,7 +83,7 @@ function clearField() {
     buttonClear.style.display = "none"
 }
 
-// FUNÇÃO PARA RETORNAR TEXTO DE ERRO CASO(UNDEFINED)
+// FUNÇÃO PARA RETORNAR TEXTO DE ERRO (CASO UNDEFINED)
 function errorText() {
     logradouro.value = "Cep não encontrado!"
     complemento.value = "Cep não encontrado!"
@@ -96,7 +96,7 @@ function errorText() {
     siafi.value = "Cep não encontrado!"
 }
 
-// FUNÇÃO PARA RETORNAR TEXTO DE ERRO CASO(CEP INVÁLIDO)
+// FUNÇÃO PARA RETORNAR TEXTO DE ERRO (CASO CEP INVÁLIDO)
 function invalidCep() {
     logradouro.value = "Cep inválido!"
     complemento.value = "Cep inválido!"
@@ -109,7 +109,7 @@ function invalidCep() {
     siafi.value = "Cep inválido!"
 }
 
-// FUNÇÃO PARA RETORNAR TEXTO DE ERRO CASO(CAMPO VAZIO)
+// FUNÇÃO PARA RETORNAR TEXTO DE ERRO (CASO CAMPO VAZIO)
 function emptyField() {
     logradouro.value = "Campo cep vazio!"
     complemento.value = "Campo cep vazio!"
