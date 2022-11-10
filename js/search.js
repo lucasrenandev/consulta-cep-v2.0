@@ -48,7 +48,7 @@ function getCep() {
 // FUNÇÃO PARA RETORNAR OS DADOS OBTIDOS
 function getData(data) {
     if(data.erro) {
-        errorText()
+        dataError()
     }
     else {
         getDataField(data)
@@ -84,7 +84,7 @@ function clearField() {
 }
 
 // FUNÇÃO PARA RETORNAR TEXTO DE ERRO (CASO UNDEFINED)
-function errorText() {
+function dataError() {
     logradouro.value = "Cep não encontrado!"
     complemento.value = "Cep não encontrado!"
     bairro.value = "Cep não encontrado!"
